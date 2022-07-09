@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities; 
+
+.box {
+    @apply p-2;
+    @apply border-4; 
+    @apply my-2;
+    @apply border-solid; 
+    @apply border-cyan-500; 
+    @apply rounded-2xl;
+}
+
+.section-header{
+    @apply font-bold;
+    @apply my-2;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duck Fax Facts</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="mx-6 text-emerald-400 bg-slate-200 grid grid-cols-3 grid-rows-4 gap-2" >
+    <h1 class="font-bold text-6xl m-4 col-span-3 text-center pt-4">🦆 CRUDuck Fax Facts API! 🦆</h1>
+
+    <div class="box row-span-3 col-span-2">
+        <h2 class="font-bold text-emerald-500 text-2xl">Facts:</h2>
+        <ul class="facts ml-2">
+            <!-- loop through facts in db -->
+            <% for(var i = 0; i < facts.length; i++) { %>
+                <li class="p-4 fact border-2 border-solid border-slate-400 rounded-2xl my-2 bg-slate-300">
+                    <h6 class="section-header p-2">Fact: </h6><p class=""><%= facts[i].fact %></p>
+                    <h6 class="section-header p-2">Author: </h6><p><%= facts[i].author %></p>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+
+    <div class="box">
+        <h2 class="section-header">Create your own duck facts!</h2>
+        <form  action="/facts" method="POST">
+            <input class="p-2 border-2 border-solid border-slate-400 rounded-2xl" type="text" placeholder="Ducks have webbed feet!" name="fact" required>
+            <input class="p-2 border-2 border-solid border-slate-400 rounded-2xl" type="text" placeholder="John Smith" name="author" required>
+            <button class="p-2 border-2 border-double border-slate-400 rounded-2xl" type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="box">
+        <h2 class="section-header">Faxing Facter Faxes Facts</h2>
+        <p>
+            Replace first Zybrith fact with fact written by the Faxing Facter
+        </p>
+        <button class="p-2 border-2 border-double border-slate-400 rounded-2xl" id="update-button">Fax Fact From Faxing Facter</button>
+    </div>
+
+    <div class="box">   
+        <h2 class="section-header">Remove Faxing Facter!</h2>
+        <p>
+            Delete most recent faxed fact made by the Faxing Facter
+        </p>
+        <button class="p-2 border-2 border-double border-slate-400 rounded-2xl" id="delete-button">Delete Faxed Faxing Facter Fact</button>
+        <div id="message"></div>
+    </div>
+    
+    <script src="/main.js"></script>
+</body>
+</html>

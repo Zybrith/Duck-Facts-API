@@ -1,0 +1,3 @@
+Web application to store and serve Duck Facts from a database. 
+
+add more detail later... 
