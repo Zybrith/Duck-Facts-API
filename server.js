@@ -1,13 +1,13 @@
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
+const { MONGO_CLIENT_EVENTS } = require('mongodb');
 const app = express();
 const MongoClient = require('mongodb').MongoClient
-//mongoConnectionString
-//#region
-    const mongoConnectionString = 'mongodb+srv://Zybrith:CQx7c44tmcr0miXt@duck-facts.mn3gssj.mongodb.net/?retryWrites=true&w=majority'
-//#endregion
 
-MongoClient.connect(mongoConnectionString,{useUnifiedTopology: true})
+const mongoConnect = process.env.MONGO_CONNECTION
+
+MongoClient.connect(mongoConnect,{useUnifiedTopology: true})
     .then(client =>{
         console.log('Connected to db!')
         const db = client.db('Duck-Facts')
@@ -41,8 +41,7 @@ MongoClient.connect(mongoConnectionString,{useUnifiedTopology: true})
 
         //create a new duck fact
         app.post('/facts',(req, res) => {
-            console.log(req.body);
-            factsCollection.insertOne(req.body)
+            factsCollection.insertOne({fact: req.body.fact, author: req.body.author, likes: 0})
                 .then(result =>{
                     res.redirect('/')
                 })

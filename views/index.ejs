@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duck Fax Facts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="mx-6 text-emerald-400 bg-slate-200" >
@@ -17,9 +18,12 @@
                 <!-- loop through facts in db -->
                 <% for(var i = 0; i < facts.length; i++) { %>
                     <li class="px-4 py-2 fact border-2 border-solid border-slate-400 rounded-2xl my-2 bg-slate-300">
-                        <h4 class="font-bold underline mb-1">Title:</h4>
+                        <h4 class="font-bold underline mb-1">Duck Fact: </h4>
                         <p class="p-2 block border-solid border-2 bg-slate-200 rounded-xl"><%= facts[i].fact %></p> 
-                        <a href="#" class="block italic hover:not-italic text-right font-semibold">Author: <%= facts[i].author %></a>
+                        <div class="block">
+                            <span href="#" class="italic font-semibold"><a href="#">Likes:</a>  <%= facts[i].likes %></span>
+                            <span href="#" class="inline-block italic float-right font-semibold">Author: <%= facts[i].author %></span>    
+                        </div>
                     </li>
                 <% } %>
             </ul>
