@@ -1,6 +1,7 @@
 const update = document.querySelector('#update-button')
 const removeButton = document.querySelector('#delete-button')
 const messageDiv = document.querySelector('#message')
+const factCards = document.querySelectorAll('.fact-card')
 
 const fact = {
     fact: 'Ducks cannot effectively use modern fax machines, because of the way that they are.',
@@ -10,6 +11,8 @@ const fact = {
 const removeAuthor = {
     author: 'Faxing Facter'
 }
+
+
 
 update.addEventListener('click', _=>{
     fetch('/facts', {
@@ -42,3 +45,19 @@ removeButton.addEventListener('click', _ => {
             }
         })
 })
+
+factCards.forEach(card =>{
+    card.querySelector('.like').addEventListener('click', _=>{
+        fetch('/like', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({fact: card.querySelector('.fact-body').innerHTML, author: card.querySelector('.author').innerHTML})
+        })
+            .then(res => {
+                if(res.ok) return res.json()
+            })
+            .then(res => {
+                window.location.reload(true)
+            })
+    })
+} )

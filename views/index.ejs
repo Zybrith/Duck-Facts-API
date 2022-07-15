@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duck Fax Facts</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3f2410a82a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="mx-6 text-emerald-400 bg-slate-200" >
@@ -17,12 +17,12 @@
             <ul class="facts ml-2 list-none">
                 <!-- loop through facts in db -->
                 <% for(var i = 0; i < facts.length; i++) { %>
-                    <li class="px-4 py-2 fact border-2 border-solid border-slate-400 rounded-2xl my-2 bg-slate-300">
-                        <h4 class="font-bold underline mb-1">Duck Fact: </h4>
-                        <p class="p-2 block border-solid border-2 bg-slate-200 rounded-xl"><%= facts[i].fact %></p> 
+                    <li class="fact-card px-4 py-2 fact border-2 border-solid border-slate-400 rounded-2xl my-2 bg-slate-300">
+                        <h4 class="font-bold underline mb-1">Duck Fact #<%= i+1%>: </h4>
+                        <p class="fact-body p-2 block border-solid border-2 bg-slate-200 rounded-xl"><%= facts[i].fact %></p> 
                         <div class="block">
-                            <span href="#" class="italic font-semibold"><a href="#">Likes:</a>  <%= facts[i].likes %></span>
-                            <span href="#" class="inline-block italic float-right font-semibold">Author: <%= facts[i].author %></span>    
+                            <button><i class="like fa-solid fa-thumbs-up"></i></button> : <span class="like-count font-semibold"><%= facts[i].likes %></span>
+                            <span class="inline-block italic float-right font-semibold">Author: <span class="author"><%= facts[i].author %></span></span>    
                         </div>
                     </li>
                 <% } %>

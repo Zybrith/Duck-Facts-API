@@ -68,6 +68,27 @@ MongoClient.connect(mongoConnect,{useUnifiedTopology: true})
                     .catch(error => console.log(error))
         })
 
+        app.put('/like', (req,res) => {
+            console.log(req.body)
+            factsCollection.findOneAndUpdate(
+                {
+                    fact: req.body.fact,
+                    author: req.body.author
+                },
+                {
+                    $inc: {
+                        likes:1
+                    }
+                },
+                {
+                    upsert: true
+                })
+                    .then(result => {
+                        res.json('Success')
+                    })
+                    .catch(error => console.log(error))
+        })
+
         app.delete('/facts', (req, res) => {
             factsCollection.deleteOne({ author: 'Faxing Facter'})
                 .then(result => {
